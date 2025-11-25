@@ -1,0 +1,31 @@
+name: Continuous Integration
+run-name: Executado por ${{ github.actor }} em ${{ github.run_number }}
+
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  
+jobs:
+  run-test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup K6
+      uses: grafana/setup-k6-action@v1
+
+    - name: Run local k6 test
+      uses: grafana/run-k6-action@v1
+      with:
+        path: tests/testCi.js
+    
+    - name: Publish HTML Report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: k6-execution-logs
+        path: logs/
+        retention-days: 7
