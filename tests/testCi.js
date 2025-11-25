@@ -6,21 +6,17 @@ import { textSummary } from 'https://jslib.k6.io/k6-summary/0.1.0/index.js'
 
 export default function (){
 
-    const response = http.get('http://localhost:3000/')
+    const response = http.get('https://k6.io/')
 
     check(response, {
         'status is 200': (r) => r.status === 200,
-        'body contains text': (r) => r.body.includes('Smart Bit'),
-    });
-    
-    console.log(response.body);
-    
-    sleep(1);
+        'body contains text': (r) => r.body.includes('Load testing'),
+    }); 
 }
 
 export function handleSummary(data) {
   return {
-    'logs/test-ping.html': htmlReport(data),
+    'logs/test-ci.html': htmlReport(data),
     stdout: textSummary(data, { indent: ' ', enableColors: true }),
   }
 }

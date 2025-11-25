@@ -51,7 +51,7 @@ export function teardown(){
 
 export function handleSummary(data) {
     return {
-        'result.html': htmlReport(data),
+        'logs/test-accounts.html': htmlReport(data),
         stdout: textSummary(data, { indent: ' ', enableColors: true }),
     }   
 }
