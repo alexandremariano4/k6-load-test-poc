@@ -14,8 +14,8 @@ help:
 	@echo   make web               - Inicia o servidor web
 	@echo ==================================================================
 	@echo [TESTES K6]
-	@echo   make test              - Executa testes K6
-	@echo   make test-verbose      - Executa testes K6 com verbose
+	@echo   make test-accounts              - Executa testes K6 do endpoint accounts
+	@echo   make test-verbose      		    - Executa testes K6 do endpoint accounts com verbose
 
 # ============================================================================
 # SETUP
@@ -53,10 +53,10 @@ web:
 # TESTES K6
 # ============================================================================
 
-test:
-	@echo "Executando testes K6..."
+test-accounts:
+	@echo "Executando testes K6 do endpoint accounts..."
 	k6 run .\tests\accounts.js
 
-test-verbose:
-	@echo "Executando testes K6 (verbose)..."
+test-accounts-verbose:
+	@echo "Executando testes K6 do endpoint accounts com verbose..."
 	k6 run .\tests\accounts.js --verbose
