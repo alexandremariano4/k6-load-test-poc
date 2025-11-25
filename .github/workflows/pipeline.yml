@@ -1,5 +1,4 @@
-name: Continuous Integration
-run-name: Executado por ${{ github.actor }} em ${{ github.run_number }}
+name: Pipeline de execução K6
 
 on: 
   workflow_dispatch:
