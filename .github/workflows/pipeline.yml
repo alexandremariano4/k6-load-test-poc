@@ -12,13 +12,35 @@ on:
           - tests/testCi.js
           - tests/accounts.js
           - tests/pingServer.js
-      vus:
-        description: 'Número de usuários virtuais (VUs)'
+      vu_1:
+        description: 'Número de usuários virtuais (VUs) para estágio 1'
         required: false
-        default: '10'
+        default: '100'
         type: string
-      duration:
-        description: 'Duração do teste (ex: 30s, 1m)'
+      duration_1:
+        description: 'Duração do teste para estágio 1 (ex: 30s, 1m)'
+        required: false
+        default: '30s'
+        type: string
+
+      vu_2:
+        description: 'Número de usuários virtuais (VUs) para estágio 2'
+        required: false
+        default: '150'
+        type: string
+      duration_2:
+        description: 'Duração do teste para estágio 2 (ex: 30s, 1m)'
+        required: false
+        default: '50s'
+        type: string
+
+      vu_3:
+        description: 'Número de usuários virtuais (VUs) para estágio 3'
+        required: false
+        default: '100'
+        type: string
+      duration_3:
+        description: 'Duração do teste para estágio 3 (ex: 30s, 1m)'
         required: false
         default: '30s'
         type: string
