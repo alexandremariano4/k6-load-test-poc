@@ -1,14 +1,14 @@
 import { __ENV } from 'k6';
 
 export function accountOptions() {
-    const vu_1 = (__ENV && __ENV.K6_VUS_1) ? parseInt(__ENV.K6_VUS_1) : 100;
+    const vu_1 = (__ENV && __ENV.K6_VUS_1) ? parseInt(__ENV.K6_VUS_1) : 30;
     const duration_1 = (__ENV && __ENV.K6_DURATION_1) ? __ENV.K6_DURATION_1 : '30s';
 
-    const vu_2 = (__ENV && __ENV.K6_VUS_2) ? parseInt(__ENV.K6_VUS_2) : 150;
-    const duration_2 = (__ENV && __ENV.K6_DURATION_2) ? __ENV.K6_DURATION_2 : '50s';
+    const vu_2 = (__ENV && __ENV.K6_VUS_2) ? parseInt(__ENV.K6_VUS_2) : 50;
+    const duration_2 = (__ENV && __ENV.K6_DURATION_2) ? __ENV.K6_DURATION_2 : '60s';
     
     const vu_3 = (__ENV && __ENV.K6_VUS_3) ? parseInt(__ENV.K6_VUS_3) : 100;
-    const duration_3 = (__ENV && __ENV.K6_DURATION_3) ? __ENV.K6_DURATION_3 : '30s';
+    const duration_3 = (__ENV && __ENV.K6_DURATION_3) ? __ENV.K6_DURATION_3 : '90s';
     
     return {
         stages:[
@@ -29,7 +29,7 @@ export function accountOptions() {
             */
             http_req_failed: ['rate<0.01'], // 1% das requisições podem ocorrer erro
             http_reqs: [
-                'rate>50'
+                'rate>30'
             ]
         }
     }

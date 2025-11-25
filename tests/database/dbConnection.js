@@ -13,8 +13,6 @@ export function deleteUser(email) {
     return result;
 }
 
-
-
 export function deleteExcedentUsers() {
     const result = db.exec('DELETE FROM accounts WHERE id > 10;');
     
@@ -24,8 +22,6 @@ export function deleteExcedentUsers() {
     
     return result;
 }
-
-
 
 export function closeConnection() {
     db.close();
