@@ -2,6 +2,26 @@ name: Pipeline de execução K6
 
 on: 
   workflow_dispatch:
+    inputs:
+      test_file:
+        description: 'Arquivo de teste a executar'
+        required: true
+        default: 'tests/testCi.js'
+        type: choice
+        options:
+          - tests/testCi.js
+          - tests/accounts.js
+          - tests/pingServer.js
+      vus:
+        description: 'Número de usuários virtuais (VUs)'
+        required: false
+        default: '10'
+        type: string
+      duration:
+        description: 'Duração do teste (ex: 30s, 1m)'
+        required: false
+        default: '30s'
+        type: string
   push:
     branches:
       - master
@@ -19,7 +39,10 @@ jobs:
     - name: Run local k6 test
       uses: grafana/run-k6-action@v1
       with:
-        path: tests/testCi.js
+        path: ${{ github.event.inputs.test_file }}
+      env:
+        K6_VUS: ${{ github.event.inputs.vus }}
+        K6_DURATION: ${{ github.event.inputs.duration }}
     
     - name: Publish HTML Report
       uses: actions/upload-artifact@v4

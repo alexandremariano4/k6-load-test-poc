@@ -1,5 +1,4 @@
-export function loadOptions() {
-
+export function accountOptions() {
     return {
         stages:[
             {duration: '20s', target: 100},

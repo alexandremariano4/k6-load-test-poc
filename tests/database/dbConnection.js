@@ -8,21 +8,23 @@ export function deleteUser(email) {
     const result = db.exec('DELETE FROM accounts WHERE email = $1;', email);
     
     check(result, {
-        'delete user successful': (r) => r.rowsAffected() > 0,
+        'delete user successfully': (r) => r.rowsAffected() > 0,
     });
-    
     return result;
 }
+
+
 
 export function deleteExcedentUsers() {
     const result = db.exec('DELETE FROM accounts WHERE id > 10;');
     
     check(result, {
-        'delete user successful': (r) => r.rowsAffected() > 0,
+        'delete new users successfully': (r) => r.rowsAffected() > 0,
     });
     
     return result;
 }
+
 
 
 export function closeConnection() {

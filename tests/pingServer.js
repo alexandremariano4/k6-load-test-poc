@@ -1,7 +1,8 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
-import { htmlReport     } from './report/htmlReport.js';
-import { textSummary    } from './report/textSummary.js'
+import { defaultHandleSummary } from './configuration/generalConfig.js';
+
+export const handleSummary = defaultHandleSummary('test-ping.html');
 
 
 export default function (){
@@ -12,15 +13,8 @@ export default function (){
         'status is 200': (r) => r.status === 200,
         'body contains text': (r) => r.body.includes('Smart Bit'),
     });
-    
-    console.log(response.body);
+  
     
     sleep(1);
 }
 
-export function handleSummary(data) {
-  return {
-    'logs/test-ping.html': htmlReport(data),
-    stdout: textSummary(data, { indent: ' ', enableColors: true }),
-  }
-}
