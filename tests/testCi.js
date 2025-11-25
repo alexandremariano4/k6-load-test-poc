@@ -1,7 +1,6 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { defaultHandleSummary } from './configuration/generalConfig.js';
-import { options } from 'k6/http';
 import { accountOptions } from './options/options.js';
 
 export const handleSummary = defaultHandleSummary('test-ci.html');

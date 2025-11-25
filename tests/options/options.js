@@ -1,14 +1,14 @@
 import { __ENV } from 'k6';
 
 export function accountOptions() {
-    const vu_1 = parseInt(__ENV.K6_VUS_1) || 100;
-    const duration_1 = __ENV.K6_DURATION_1 || '30s';
+    const vu_1 = (__ENV && __ENV.K6_VUS_1) ? parseInt(__ENV.K6_VUS_1) : 100;
+    const duration_1 = (__ENV && __ENV.K6_DURATION_1) ? __ENV.K6_DURATION_1 : '30s';
 
-    const vu_2 = parseInt(__ENV.K6_VUS_2) || 150;
-    const duration_2 = __ENV.K6_DURATION_2 || '50s';
+    const vu_2 = (__ENV && __ENV.K6_VUS_2) ? parseInt(__ENV.K6_VUS_2) : 150;
+    const duration_2 = (__ENV && __ENV.K6_DURATION_2) ? __ENV.K6_DURATION_2 : '50s';
     
-    const vu_3 = parseInt(__ENV.K6_VUS_3) || 100;
-    const duration_3 = __ENV.K6_DURATION_3 || '30s';
+    const vu_3 = (__ENV && __ENV.K6_VUS_3) ? parseInt(__ENV.K6_VUS_3) : 100;
+    const duration_3 = (__ENV && __ENV.K6_DURATION_3) ? __ENV.K6_DURATION_3 : '30s';
     
     return {
         stages:[
