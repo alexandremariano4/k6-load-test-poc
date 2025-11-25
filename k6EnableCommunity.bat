@@ -1,0 +1,1 @@
+$env:K6_ENABLE_COMMUNITY_EXTENSIONS = "true"
