@@ -17,8 +17,20 @@ export function accountOptions() {
             {duration: duration_3, target: vu_3},
         ],
         thresholds: {   
-            http_req_duration: ['p(95)<200'], // 95% das requisições devem responder em até 200ms
+            http_req_duration: [
+                'p(95)<200',
+                'p(99)<400',
+                'avg<150',
+            
+            ], /*
+            95% das requisições devem responder em até 200ms
+            99% das requisições devem responder em até 400ms
+            tempo médio de resposta deve ser menor que 150ms
+            */
             http_req_failed: ['rate<0.01'], // 1% das requisições podem ocorrer erro
+            http_reqs: [
+                'rate>50'
+            ]
         }
     }
 }
