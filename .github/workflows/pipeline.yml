@@ -63,8 +63,12 @@ jobs:
       with:
         path: ${{ github.event.inputs.test_file }}
       env:
-        K6_VUS: ${{ github.event.inputs.vus }}
-        K6_DURATION: ${{ github.event.inputs.duration }}
+        K6_VUS_1: ${{ github.event.inputs.vu_1 }}
+        K6_DURATION_1: ${{ github.event.inputs.duration_1 }}
+        K6_VUS_2: ${{ github.event.inputs.vu_2 }}
+        K6_DURATION_2: ${{ github.event.inputs.duration_2 }}
+        K6_VUS_3: ${{ github.event.inputs.vu_3 }}
+        K6_DURATION_3: ${{ github.event.inputs.duration_3 }}
     
     - name: Publish HTML Report
       uses: actions/upload-artifact@v4
