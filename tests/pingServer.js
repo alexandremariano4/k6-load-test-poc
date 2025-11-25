@@ -1,8 +1,10 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { defaultHandleSummary } from './configuration/generalConfig.js';
+import { accountOptions } from './options/options.js';
 
 export const handleSummary = defaultHandleSummary('test-ping.html');
+export const options = accountOptions();
 
 
 export default function (){
