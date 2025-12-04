@@ -179,6 +179,90 @@ k6 run .\tests\pingServer.js
 5. Clique em **Run workflow**
 6. Os relatórios serão salvos como artifacts
 
+### Opção 4: Com Grafana Cloud K6 ☁️ 
+
+#### 4.1 Configurar Token do Grafana Cloud
+
+**Passo 1: Obter Token**
+1. Acesse: https://app.grafana.com/
+2. Login com sua conta Grafana Cloud
+3. Vá para **Grafana Cloud K6** → **Projects**
+4. Em **Settings** → **API Tokens**, crie um novo token
+
+**Passo 2: Adicionar Token no K6**
+
+Edite o arquivo de configuração K6:
+```
+C:\Users\seu-usuario\AppData\Roaming\k6\config.json
+```
+
+Atualize a seção `collectors.cloud`:
+```json
+{
+  "collectors": {
+    "cloud": {
+      "token": "seu_token_do_grafana_aqui",
+      "projectID": null,
+      "name": "SmartBit Performance Tests"
+    }
+  }
+}
+```
+
+**Ou use variável de ambiente (PowerShell):**
+```bash
+$env:K6_CLOUD_TOKEN = "seu_token_do_grafana_aqui"
+```
+
+#### 4.2 Executar Testes no Grafana Cloud
+
+```bash
+# Executar teste de contas e enviar para Grafana Cloud
+k6 run tests/accounts.js --out cloud
+
+# Executar teste de ping no Grafana
+k6 run tests/pingServer.js --out cloud
+
+# Executar teste CI
+k6 run tests/testCi.js --out cloud
+```
+
+⚠️ **Nota Importante:** O `projectID` já está configurado em `tests/options/options.js` como `5967242`. Se você quiser usar seu próprio projeto no Grafana, altere o valor em:
+```javascript
+// tests/options/options.js
+cloud:{
+    name: 'SmartBit - Accounts Test',
+    projectID: 5967242,  // ← Altere para seu projectID
+    // ...
+}
+```
+
+**Saída esperada:**
+```
+INFO[0000] Test started
+INFO[0001] Cloud test run started: https://app.grafana.com/...
+INFO[0030] Test finished successfully
+```
+
+#### 4.3 Visualizar Resultados
+
+1. Acesse: https://app.grafana.com/
+2. Vá para **Grafana Cloud K6**
+3. Clique em **Performance Insights** ou seu dashboard
+4. Você verá em tempo real:
+   - Número de requisições
+   - Tempo de resposta (p95, p99)
+   - Taxa de erro
+   - Gráficos de throughput
+   - Histórico de execuções anteriores
+
+**Benefícios do Grafana Cloud:**
+- ✅ Monitoramento em tempo real durante o teste
+- ✅ Histórico de todas as execuções
+- ✅ Comparação entre testes
+- ✅ Alertas automáticos
+- ✅ Tier gratuito disponível
+
 ## 📁 Estrutura do Projeto
 
 ```
